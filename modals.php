@@ -1,4 +1,13 @@
-<div class="modal fade" id="AddUser" tabindex="-1" aria-hidden="true">
+<?php 
+
+$query="SELECT * FROM states";
+$result=mysqli_query($con,$query);
+
+
+ ?>
+
+
+ <div class="modal fade" id="AddUser" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content rounded-corner">
       <div class="modal-header">
@@ -80,6 +89,11 @@
               <label for="Select-State" class="col-form-label">Select State</label>
               <select class="form-control rounded-corner" id="State">
                 <option value="">select</option>
+                <?php 
+                    while($row = mysqli_fetch_array($result)){
+                      echo '<option value="'.$row["StateCode"].'">'.$row["StateName"].'</option>';
+                    }
+                ?>
 
               </select>
             </div>

@@ -1,3 +1,8 @@
+<?php 
+include"connection.php";
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -757,6 +762,54 @@
           $('#FNewUser').trigger("reset");
           $('#AddUser').modal('hide');
           swal("success","User created successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter all fields","error");
+      }
+    });
+
+    $(document).on('click', '.SaveState', function(){
+
+      var StateName = document.getElementById("StateName").value;
+      var StateCode = document.getElementById("NewStateCode").value;
+
+      if (StateName!='' && StateCode!='') {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'StateName':StateName, 'NewStateCode':StateCode},
+         success:function(data){
+          $('#FNewState').trigger("reset");
+          $('#AddState').modal('hide');
+          swal("success","New State added successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter all fields","error");
+      }
+    });
+
+
+    $(document).on('click', '.SaveDistrict', function(){
+
+      var StateCode = document.getElementById("State").value;
+      var DistrictName = document.getElementById("DistrictName").value;
+      var DistrictCode = document.getElementById("NewDistrictCode").value;
+
+      if (DistrictName!='' && StateCode!='' && DistrictCode!='') {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'DistrictName':DistrictName, 'StateCode':StateCode, 'NewDistrictCode':DistrictCode},
+         success:function(data){
+          $('#FNewDistrict').trigger("reset");
+          $('#AddDistrict').modal('hide');
+          swal("success","New District added successfully","success");
         }
       });
 
