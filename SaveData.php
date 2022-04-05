@@ -4,6 +4,7 @@ include 'connection.php';
 
 //$userID=$_SESSION['userid'];
 
+
 $UserName=!empty($_POST['UserName'])?$_POST['UserName']:'';
 
 if (!empty($UserName)) {
@@ -51,6 +52,51 @@ if (!empty($NewDistrictName)) {
 
   $sql = "INSERT INTO district (District, StateCode, DistrictCode)
   VALUES ('$NewDistrictName', $StateCode, $NewDistrictCode)";
+  if ($con->query($sql) === TRUE) {
+
+  }else {
+    echo "Error: " . $sql . "<br>" . $con->error;
+    $myfile = fopen("error.txt", "w") or die("Unable to open file!");
+    fwrite($myfile, $con->error);
+    fclose($myfile);
+  }
+}
+
+
+$NewInstituteName=!empty($_POST['InstituteName'])?$_POST['InstituteName']:'';
+
+if (!empty($NewInstituteName)) {
+
+  $DistrictCode=!empty($_POST['DistrictCode'])?$_POST['DistrictCode']:'';
+  $InstituteCode=!empty($_POST['InstituteCode'])?$_POST['InstituteCode']:'';
+  $InstitutePhone=!empty($_POST['InstitutePhone'])?$_POST['InstitutePhone']:'';
+  $InstituteEmail=!empty($_POST['InstituteEmail'])?$_POST['InstituteEmail']:'';
+  $InstituteMobile=!empty($_POST['InstituteMobile'])?$_POST['InstituteMobile']:'';
+
+  $sql = "INSERT INTO institutes (InstituteName, OfficialCode, DistrictCode, Email, MobileNo, PhoneNo)
+  VALUES ('$NewInstituteName', $InstituteCode, $DistrictCode, '$InstituteEmail', '$InstituteMobile', '$InstitutePhone')";
+  if ($con->query($sql) === TRUE) {
+
+  }else {
+    echo "Error: " . $sql . "<br>" . $con->error;
+    $myfile = fopen("error.txt", "w") or die("Unable to open file!");
+    fwrite($myfile, $con->error);
+    fclose($myfile);
+  }
+}
+
+$NewStudentName=!empty($_POST['StudentName'])?$_POST['StudentName']:'';
+
+if (!empty($NewStudentName)) {
+
+
+  $InstituteCode=!empty($_POST['InstituteCode'])?$_POST['InstituteCode']:'';
+  $StudentPassword=!empty($_POST['StudentPassword'])?$_POST['StudentPassword']:'';
+  $StudentEmail=!empty($_POST['StudentEmail'])?$_POST['StudentEmail']:'';
+  $StudentMobile=!empty($_POST['StudentMobile'])?$_POST['StudentMobile']:'';
+
+  $sql = "INSERT INTO students (StudentName, InstituteCode, Email, MobileNo, Password)
+  VALUES ('$NewStudentName', $InstituteCode, '$StudentEmail', '$StudentMobile', '$StudentPassword')";
   if ($con->query($sql) === TRUE) {
 
   }else {

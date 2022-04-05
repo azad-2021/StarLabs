@@ -1,13 +1,28 @@
 <?php 
 
-$query="SELECT * FROM states";
-$result=mysqli_query($con,$query);
+function States(){
 
 
- ?>
+  $host = "localhost";  
+  $user = "root";  
+  $password = '';  
+  $db_1 = "starlabs";
+
+  $con = mysqli_connect($host, $user, $password, $db_1);  
+  if(mysqli_connect_errno()) {  
+    die("Failed to connect with MySQL: ". mysqli_connect_error());  
+  }
+
+  $query="SELECT * FROM states order by StateName";
+  $result=mysqli_query($con,$query);
+  return $result;
+}
 
 
- <div class="modal fade" id="AddUser" tabindex="-1" aria-hidden="true">
+?>
+
+
+<div class="modal fade" id="AddUser" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content rounded-corner">
       <div class="modal-header">
@@ -90,9 +105,10 @@ $result=mysqli_query($con,$query);
               <select class="form-control rounded-corner" id="State">
                 <option value="">select</option>
                 <?php 
-                    while($row = mysqli_fetch_array($result)){
-                      echo '<option value="'.$row["StateCode"].'">'.$row["StateName"].'</option>';
-                    }
+                $result=States();
+                while($row = mysqli_fetch_array($result)){
+                  echo '<option value="'.$row["StateCode"].'">'.$row["StateName"].'</option>';
+                }
                 ?>
 
               </select>
@@ -128,13 +144,19 @@ $result=mysqli_query($con,$query);
           <div class="row">
             <div class="col-lg-3">
               <label for="State-Name" class="col-form-label">Select State</label>
-              <select class="form-control rounded-corner" id="StateCode">
+              <select class="form-control rounded-corner" id="StateCodeInstitute">
                 <option value="">Select</option>
+                <?php 
+                $result=States();
+                while($row = mysqli_fetch_array($result)){
+                  echo '<option value="'.$row["StateCode"].'">'.$row["StateName"].'</option>';
+                }
+                ?>
               </select>
             </div>
             <div class="col-lg-3">
               <label for="District-Name" class="col-form-label">Select District</label>
-              <select class="form-control rounded-corner" id="DistrictCode">
+              <select class="form-control rounded-corner" id="DistrictCodeInstitute">
                 <option value="">Select</option>
               </select>
             </div>
@@ -186,6 +208,13 @@ $result=mysqli_query($con,$query);
               <label for="Institute-Name" class="col-form-label">Select Institute</label>
               <select class="form-control rounded-corner" id="InstituteCodeStudent">
                 <option value="">Select</option>
+                <?php 
+                $query="SELECT * FROM institutes order by InstituteName";
+                $result=mysqli_query($con,$query);
+                while($row = mysqli_fetch_array($result)){
+                  echo '<option value="'.$row["InstituteCode"].'">'.$row["InstituteName"].'</option>';
+                }
+                ?>
               </select>
             </div>
             <div class="col-lg-4">

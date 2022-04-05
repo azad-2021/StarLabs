@@ -1,7 +1,11 @@
 <?php 
 include"connection.php";
 
- ?>
+$query="SELECT count(StudentID) from students";
+$result = mysqli_query($con,$query);
+$arr=mysqli_fetch_assoc($result);
+$StudentCount=$arr['count(StudentID)'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -108,10 +112,10 @@ include"connection.php";
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
+                      <i class="bi bi-person-badge"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6><?php echo $StudentCount; ?></h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase today</span>
 
                     </div>
@@ -143,7 +147,7 @@ include"connection.php";
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-currency-dollar"></i>
+                      <i class="bx bx-rupee"></i>
                     </div>
                     <div class="ps-3">
                       <h6>$3,264</h6>
@@ -722,7 +726,7 @@ include"connection.php";
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright 2022<strong><span>STAR Laboratories</span></strong>. All Rights Reserved
+      &copy; Copyright 2022 <strong><span>STAR Laboratories</span></strong>. All Rights Reserved
     </div>
   </footer>
   <!-- End Footer -->
@@ -817,6 +821,80 @@ include"connection.php";
         swal("error","Please enter all fields","error");
       }
     });
+
+
+    $(document).on('change','#StateCodeInstitute', function(){
+      var StateCode = $(this).val();
+      if(StateCode){
+        $.ajax({
+          type:'POST',
+          url:'SelectData.php',
+          data:{'StateCodeInstitute':StateCode},
+          success:function(result){
+            $('#DistrictCodeInstitute').html(result);
+
+          }
+        }); 
+      }else{
+        $('#DistrictCodeInstitute').html('<option value="">District</option>');
+      }
+    });
+
+
+    $(document).on('click', '.SaveInstitute', function(){
+
+      var  DistrictCode = document.getElementById("DistrictCodeInstitute").value;
+      var  InstituteName = document.getElementById("InstituteName").value;
+      var  InstituteCode = document.getElementById("InstituteCode").value;
+      var  InstituteEmail = document.getElementById("InstituteEmail").value;
+      var  InstituteMobile = document.getElementById("InstituteMobile").value;
+      var  InstitutePhone = document.getElementById("InstitutePhone").value;
+
+      if (InstituteName!='' && InstituteCode!='' && DistrictCode!='' && InstitutePhone!='' && InstituteMobile && InstituteEmail) {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'InstituteName':InstituteName, 'InstituteCode':InstituteCode, 'DistrictCode':DistrictCode, 'InstituteEmail':InstituteEmail, 'InstituteMobile':InstituteMobile, 'InstitutePhone':InstitutePhone},
+         success:function(data){
+          $('#FNewInstitute').trigger("reset");
+          $('#AddInstitute').modal('hide');
+          swal("success","New Institute added successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter all fields","error");
+      }
+    });
+
+    $(document).on('click', '.SaveStudent', function(){
+
+      var  StudentName = document.getElementById("StudentName").value;
+      var  InstituteCode = document.getElementById("InstituteCodeStudent").value;
+      var  StudentEmail = document.getElementById("StudentEmail").value;
+      var  StudentMobile = document.getElementById("StudentMobile").value;
+      var  StudentPassword = document.getElementById("StudentPassword").value;
+
+      if (StudentName!='' && InstituteCode!=''  && StudentMobile!='' && StudentEmail!='' && StudentPassword != '') {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'StudentName':StudentName, 'InstituteCode':InstituteCode,  'StudentEmail':StudentEmail, 'StudentMobile':StudentMobile, 'StudentPassword':StudentPassword},
+         success:function(data){
+          $('#FNewStudent').trigger("reset");
+          $('#AddStudent').modal('hide');
+          swal("success","New Student added successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter all fields","error");
+      }
+    });
+
+
   </script>
 </body>
 
