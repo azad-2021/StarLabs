@@ -14,7 +14,7 @@ if (!empty($UserName)) {
   $UserPassword=!empty($_POST['UserPassword'])?$_POST['UserPassword']:'';  
 
   $sql = "INSERT INTO users (Name, Email, Password, Type)
-  VALUES ('$UserName', '$UserEmail', '$UserType', '$UserPassword')";
+  VALUES ('$UserName', '$UserEmail', '$UserPassword', '$UserType')";
   if ($con->query($sql) === TRUE) {
 
   }else {
