@@ -1,6 +1,6 @@
 <?php 
 include"connection.php";
-
+include"session.php";
 $query="SELECT count(StudentID) from students";
 $result = mysqli_query($con,$query);
 $arr=mysqli_fetch_assoc($result);
@@ -450,7 +450,7 @@ $StudentCount=$arr['count(StudentID)'];
 
             <div class="card-body">
               <h5 class="card-title">Reminders <span>| Today</span> 
-                <button class="btn btn-sm btn-primary" style="float:right; margin-right: 25px;">
+                <button data-bs-toggle="modal" data-bs-target="#AddUserReminder" class="btn btn-sm btn-primary" style="float:right; margin-right: 25px;">
                   Add
                 </button>
               </h5>
@@ -895,6 +895,27 @@ $StudentCount=$arr['count(StudentID)'];
     });
 
 
+    $(document).on('click', '.SaveUserReminder', function(){
+
+      var Reminder = document.getElementById("UserReminder").value;
+      if (Reminder) {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'Reminder':Reminder},
+         success:function(data){
+          console.log((data));
+          $('#FNewUserReminder').trigger("reset");
+          $('#AddUserReminder').modal('hide');
+          swal("success","Reminder created successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter reminder","error");
+      }
+    });
   </script>
 </body>
 

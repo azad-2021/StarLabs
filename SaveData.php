@@ -1,6 +1,6 @@
 <?php 
 include 'connection.php';
-//include 'session.php';
+include 'session.php';
 
 //$userID=$_SESSION['userid'];
 
@@ -97,6 +97,23 @@ if (!empty($NewStudentName)) {
 
   $sql = "INSERT INTO students (StudentName, InstituteCode, Email, MobileNo, Password)
   VALUES ('$NewStudentName', $InstituteCode, '$StudentEmail', '$StudentMobile', '$StudentPassword')";
+  if ($con->query($sql) === TRUE) {
+
+  }else {
+    echo "Error: " . $sql . "<br>" . $con->error;
+    $myfile = fopen("error.txt", "w") or die("Unable to open file!");
+    fwrite($myfile, $con->error);
+    fclose($myfile);
+  }
+}
+
+
+$UserReminder=!empty($_POST['Reminder'])?$_POST['Reminder']:'';
+
+if (!empty($UserReminder)) {
+  $UserID=$_SESSION['UserID'];
+  $sql = "INSERT INTO `user reminders` (UserID, Reminder)
+  VALUES ($UserID, '$UserReminder')";
   if ($con->query($sql) === TRUE) {
 
   }else {

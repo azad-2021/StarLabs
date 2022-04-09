@@ -44,7 +44,7 @@ function States(){
               <label for="User-Type" class="col-form-label">User Type</label>
               <select class="form-control rounded-corner" id="UserType">
                 <option value="">select</option>
-                <option value="SuperUser">Super User</option>
+                <option value="Super User">Super User</option>
               </select>
             </div>
             <div class="col-lg-6">
@@ -57,6 +57,30 @@ function States(){
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary SaveUser">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="AddUserReminder" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-corner">
+      <div class="modal-header">
+        <h5 class="modal-title">New Reminder</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="FNewUserReminder">
+          <div class="row">
+            <div class="col-lg-12">
+              <textarea class="form-control rounded-corner" id="UserReminder"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary SaveUserReminder">Save</button>
       </div>
     </div>
   </div>

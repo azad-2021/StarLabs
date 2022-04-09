@@ -135,7 +135,7 @@
             if (data>0) {
               swal("error","Incorrect user name or password","error");
             }else{
-              window.open("student/index.php");
+              window.open("student/index.php","_self");
             }
           }
         });

@@ -31,7 +31,7 @@ if (!empty($Type))
     session_start();
 
     $arr=mysqli_fetch_assoc($result);
-    $_SESSION['UserName']=$arr['StudentName'];
+    $_SESSION['UserName']=$arr['Name'];
     $_SESSION['UserID']=$arr['ID'];
     $_SESSION['UserType']=$arr['Type'];
 
