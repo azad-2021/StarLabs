@@ -68,6 +68,11 @@
               <i class="bi bi-circle"></i><span>District</span>
             </a>
           </li>
+          <li>
+            <a href="" data-bs-toggle="modal" data-bs-target="#AddCourse">
+              <i class="bi bi-circle"></i><span>Course</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Forms Nav -->
 

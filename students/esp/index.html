@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable=0">
+  <title>STAR Labs Robot</title>
+  <style>
+    :root {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      background: #f6f9ff;
+      color: #444444;
+    }
+
+    a {
+      color: #4154f1;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #717ff5;
+      text-decoration: none;
+    }
+
+    #JD {
+      text-align: center;
+      font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      font-size: 24px;
+    }
+    .foot {
+      text-align: center;
+      font-family: "Lucida Sans Unicode", cursive;
+      font-size: 30px;
+      color: #4154f1;
+    }
+
+    .button {
+      border: 2px solid #4154f1;
+      color: white;
+      padding: 17px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+      width: 100%;
+    }
+
+    .rounded-corner{
+      border: 2px solid #4154f1;
+      padding: 10px;
+      border-radius: 25px;
+      text-align: center;
+    }
+
+    .red {background-color: #F00;}
+    .green {background-color: #090;}
+    .yellow {background-color:#F90;}
+    .blue {background-color:#03C;}
+
+  </style>
+  <script>
+    var websock;
+    function start() {
+      websock = new WebSocket('ws://' + window.location.hostname + ':81/');
+      websock.onopen = function(evt) { console.log('websock open'); };
+      websock.onclose = function(evt) { console.log('websock close'); };
+      websock.onerror = function(evt) { console.log(evt); };
+      websock.onmessage = function(evt) {
+        console.log(evt);
+        var e = document.getElementById('ledstatus');
+        if (evt.data === 'ledon') {
+          e.style.color = 'red';
+        }
+        else if (evt.data === 'ledoff') {
+          e.style.color = 'black';
+        }
+        else {
+          console.log('unknown event');
+        }
+      };
+    }
+    function buttonclick(e) {
+      websock.send(e.id);
+    }
+  </script>
+</head>
+<body onload="javascript:start();">
+
+  <table width="100%" style="margin:2px">
+    <tr>
+      <td bgcolor="#4154f1" class="rounded-corner" id="JD"><img src="logo.png" style="background-color: white;" height="19" width="20"> Robot Controller</td>
+    </tr>
+  </table>
+
+  <table width="100" height="249" border="0" align="center">
+
+    <td></td>
+
+    <td align="center" valign="middle">
+      <form name="form1" method="post" action="">
+        <button id="F"  type="button" onclick="buttonclick(this);" class="button green">
+          Forward
+        </button> 
+      </form>
+    </td>
+
+    <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> 
+
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="L" type="button" onclick="buttonclick(this);" class="button green">
+            Turn_Left
+          </button> 
+
+        </form>
+      </td>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="S" type="button" onclick="buttonclick(this);" class="button red">
+            Stop
+          </button> 
+        </form>
+      </td>
+
+      <td align="center" valign="middle"><form name="form1" method="post" action="">
+        <label>
+          <button id="R" type="button" onclick="buttonclick(this);" class="button green">Turn_Right</button> 
+        </label>
+      </form></td>
+    </tr>
+
+    <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> 
+
+      <td></td>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="B" type="button" onclick="buttonclick(this);" class="button green">
+            Backward
+          </button> 
+        </form>
+      </td>     
+      <td></td>
+    </tr>
+
+    <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="a" type="button" onclick="buttonclick(this);" class="button blue">Speed Low
+          </button> 
+        </form>
+      </td>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="b" type="button" onclick="buttonclick(this);" class="button blue">
+            Speed Medium
+          </button> 
+        </form>
+      </td>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="c" type="button" onclick="buttonclick(this);" class="button blue">
+            Speed High
+          </button> 
+        </form>
+      </td>
+    </tr>
+
+    <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr> <tr>
+
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="o" style="margin: 12px" type="button" onclick="buttonclick(this);" class="button yellow">
+            Fire Sensor On
+          </button> 
+        </form>
+      </td>
+      <td></td>
+      <td align="center" valign="middle">
+        <form name="form1" method="post" action="">
+          <button id="f"  type="button" onclick="buttonclick(this);" class="button yellow">
+            Fire Sensor Off
+          </button> 
+        </form>
+      </td>
+    </tr>
+  </table>
+
+  <p class="foot">Hewett Polytechnic</p>
+</body>
+</html>

@@ -916,6 +916,30 @@ $StudentCount=$arr['count(StudentID)'];
         swal("error","Please enter reminder","error");
       }
     });
+
+
+    $(document).on('click', '.SaveCourse', function(){
+
+      var Course = document.getElementById("CourseName").value;
+      var Price = document.getElementById("CoursePrice").value;
+      if (Course!='' && Price!='') {
+
+        $.ajax({
+         url:"SaveData.php",
+         method:"POST",
+         data:{'Course':Course, 'Price':Price},
+         success:function(data){
+          console.log((data));
+          $('#FNewCourse').trigger("reset");
+          $('#AddCourse').modal('hide');
+          swal("success","Course added successfully","success");
+        }
+      });
+
+      }else{
+        swal("error","Please enter all fields","error");
+      }
+    });
   </script>
 </body>
 
