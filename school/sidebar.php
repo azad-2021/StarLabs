@@ -25,11 +25,6 @@
             <i class="bi bi-circle"></i><span>Student</span>
           </a>
         </li>
-        <li>
-          <a href="" data-bs-toggle="modal" data-bs-target="#ReceiptF">
-            <i class="bi bi-circle"></i><span>Receipt No</span>
-          </a>
-        </li>
       </ul>
     </li><!-- End Components Nav -->
   </li><!-- End Icons Nav -->

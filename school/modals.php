@@ -15,11 +15,29 @@
         <div class="modal-footer">
           <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         </form>
-        <button type="button" class="btn btn-primary">Search</button>
+        <button type="button" class="btn btn-primary SearchStaff">Search</button>
       </div>
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="StaffDetails" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content rounded-corner">
+      <div class="modal-header rounded-corner">
+        <h5 class="modal-title">Find Staff</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="StaffData">
+
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal fade" id="StudentF" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
@@ -44,28 +62,24 @@
   </div>
 </div>
 
-<div class="modal fade" id="ReceiptF" tabindex="-1" aria-hidden="true">
+
+<div class="modal fade" id="StudentDetails" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content rounded-corner">
       <div class="modal-header rounded-corner">
-        <h5 class="modal-title">Find Fees Receipt</h5>
+        <h5 class="modal-title">Find Student</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Enter Receipt Number</label>
-            <input type="text" class="form-control" id="FReceiptNo">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </form>
-        <button type="button" class="btn btn-primary">Search</button>
+      <div class="modal-body" id="StudentData">
+
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="modal fade" id="Registration" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">

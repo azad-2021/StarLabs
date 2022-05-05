@@ -678,12 +678,43 @@ if (isset($_POST['SaveStudent'])) {
         success:function(result){
           swal("success","Fees Updated","success"); 
           $('#re').html(result);
-          //$('#AddSubject').modal('hide');
-          //$('#Fsubject').trigger("reset");
+          $('#AddFees').modal('hide');
+          $('#FeesForm').trigger("reset");
         }
       });
     }
   });
+
+  $(document).on('click', '.SearchStaff', function(){
+    var Name = document.getElementById("FStaffName").value;
+    if (Name) {
+      $.ajax({
+        type:'POST',
+        url:'search.php',
+        data:{'StaffName':Name},
+        success:function(result){
+          $('#StaffData').html(result);
+          $('#StaffDetails').modal('show');
+        }
+      });
+    }
+  });
+
+    $(document).on('click', '.SearchStaff', function(){
+    var Name = document.getElementById("FStudentName").value;
+    if (Name) {
+      $.ajax({
+        type:'POST',
+        url:'search.php',
+        data:{'StudentName':Name},
+        success:function(result){
+          $('#StudentData').html(result);
+          $('#StudentDetails').modal('show');
+        }
+      });
+    }
+  });
+
 
 </script>
 </body>
